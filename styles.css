@@ -1,0 +1,439 @@
+:root {
+  color-scheme: dark;
+  --bg: #081229;
+  --surface: #11204b;
+  --surface-2: #16295f;
+  --text: #edf2ff;
+  --muted: #a5b4fc;
+  --accent: #7c3aed;
+  --accent-2: #60a5fa;
+  --danger: #f87171;
+  --shadow: 0 24px 64px rgba(1, 8, 30, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, rgba(96, 165, 250, 0.18), transparent 28%),
+              linear-gradient(180deg, #0b122b 0%, #081229 35%, #07111f 100%);
+  color: var(--text);
+}
+
+.app-shell {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+}
+
+.hero {
+  display: grid;
+  gap: 1.75rem;
+  align-items: center;
+  grid-template-columns: 1fr auto;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.04);
+  box-shadow: var(--shadow);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.8rem;
+  color: var(--accent-2);
+  margin: 0 0 0.5rem;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.25rem, 3vw, 3rem);
+  line-height: 1.05;
+}
+
+.hero p {
+  max-width: 42rem;
+  margin: 1rem 0 0;
+  color: var(--muted);
+}
+
+.stats-panel {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+}
+
+.stat {
+  padding: 1.25rem 1.5rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 22px;
+  text-align: center;
+}
+
+.stat span {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.stat small {
+  color: var(--muted);
+}
+
+.tool-nav {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.tool-tab {
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  padding: 0.95rem 1rem;
+  border-radius: 18px;
+  font-weight: 700;
+}
+
+.tool-tab.active {
+  background: rgba(96, 165, 250, 0.18);
+  border-color: rgba(96, 165, 250, 0.4);
+}
+
+.tool-card {
+  padding: 1.75rem;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: var(--shadow);
+  display: none;
+}
+
+.tool-card.active {
+  display: block;
+}
+
+.tool-header {
+  margin-bottom: 1.25rem;
+}
+
+.tool-header h2 {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.tool-header p {
+  margin: 0.65rem 0 0;
+  color: var(--muted);
+}
+
+.task-form,
+.pomodoro-panel,
+.calculator-card {
+  display: grid;
+  gap: 1rem;
+}
+
+.task-form label {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.input-group,
+.grid-2 {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.input-group {
+  grid-template-columns: 1fr auto;
+}
+
+.grid-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+input,
+select {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+input::placeholder {
+  color: rgba(229, 231, 235, 0.65);
+}
+
+button,
+button.secondary {
+  border: none;
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.18s ease, background-color 0.18s ease;
+}
+
+button {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white;
+}
+
+button.secondary {
+  background: rgba(255,255,255,0.07);
+  color: var(--text);
+}
+
+button.accent {
+  background: linear-gradient(135deg, #10b981, #3b82f6);
+}
+
+button:hover,
+button.secondary:hover {
+  transform: translateY(-1px);
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.filter-group,
+.pomodoro-modes,
+.habit-days,
+.calc-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.filter-group {
+  grid-template-columns: repeat(3, minmax(80px, 1fr));
+}
+
+.pomodoro-modes,
+.habit-days {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.pomodoro-modes {
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
+}
+
+.habit-days {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.mode-button,
+.habit-day {
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  padding: 0.85rem 0.95rem;
+  border-radius: 16px;
+}
+
+.mode-button.active,
+.habit-day.active,
+.filter.active {
+  background: rgba(96, 165, 250, 0.18);
+  border-color: rgba(96, 165, 250, 0.4);
+}
+
+.timer-display {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: center;
+  padding: 1.5rem;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.06);
+}
+
+.timer-display span {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+}
+
+.timer-display small {
+  color: var(--muted);
+}
+
+.pomodoro-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.expense-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.task-list,
+.habit-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.task-item,
+.habit-item,
+.expense-item,
+.calculator-card {
+  display: grid;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.task-item {
+  grid-template-columns: auto 1fr auto;
+}
+
+.expense-item,
+.habit-item {
+  grid-template-columns: 1fr auto;
+}
+
+.habit-item {
+  display: grid;
+  gap: 1rem;
+}
+
+.habit-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.habit-days {
+  width: 100%;
+}
+
+.habit-day {
+  padding: 0.8rem 0.5rem;
+}
+
+.expense-item {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.expense-meta {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.expense type,
+.expense-amount {
+  margin: 0;
+}
+
+.expense-amount {
+  font-weight: 700;
+}
+
+.calculator-card {
+  padding: 1rem;
+}
+
+.calc-display {
+  min-height: 4rem;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  display: grid;
+  place-items: end center;
+  padding: 1rem 1.25rem;
+  font-size: 2rem;
+  overflow-x: auto;
+}
+
+.calc-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.calc-grid button {
+  min-height: 3.5rem;
+}
+
+.small-text {
+  margin: 0;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .tool-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .expense-summary,
+  .pomodoro-controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .tool-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-2,
+  .task-item,
+  .expense-item,
+  .habit-item {
+    grid-template-columns: 1fr;
+  }
+
+  .pomodoro-modes,
+  .habit-days {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 500px) {
+  .app-shell {
+    padding: 1.25rem 0 2rem;
+  }
+
+  .hero,
+  .tool-card {
+    padding: 1.25rem;
+  }
+
+  .calc-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .calc-grid button[data-action="equals"] {
+    grid-column: span 3;
+  }
+}

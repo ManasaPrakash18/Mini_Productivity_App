@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Productivity App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Mini Productivity App</p>
+        <h1>Five Productivity Tools</h1>
+        <p>Choose a tool: To-do list, Expense Tracker, Pomodoro, Habit Tracker, or Calculator. All data is saved locally and the UI adapts to desktop and mobile.</p>
+      </div>
+      <div class="stats-panel">
+        <div class="stat">
+          <span id="activeToolLabel">To-do</span>
+          <small>Active tool</small>
+        </div>
+        <div class="stat">
+          <span id="sessionCount">0</span>
+          <small>Saved items</small>
+        </div>
+      </div>
+    </section>
+
+    <nav class="tool-nav" role="tablist" aria-label="Select productivity tool">
+      <button data-tool="todo" class="tool-tab active" type="button">To-do</button>
+      <button data-tool="expense" class="tool-tab" type="button">Expense</button>
+      <button data-tool="pomodoro" class="tool-tab" type="button">Pomodoro</button>
+      <button data-tool="habit" class="tool-tab" type="button">Habit</button>
+      <button data-tool="calculator" class="tool-tab" type="button">Calculator</button>
+    </nav>
+
+    <section class="tool-card active" id="todoTool">
+      <div class="tool-header">
+        <h2>To-do List</h2>
+        <p>Track tasks, mark completion, and filter items. Your list is saved automatically.</p>
+      </div>
+      <form id="todoForm" class="task-form">
+        <label for="todoInput">Add a task</label>
+        <div class="input-group">
+          <input id="todoInput" type="text" placeholder="Enter a task" autocomplete="off" />
+          <button type="submit">Add</button>
+        </div>
+      </form>
+      <div class="controls">
+        <div class="filter-group" role="group" aria-label="Filter tasks">
+          <button data-filter="all" class="filter active" type="button">All</button>
+          <button data-filter="active" class="filter" type="button">Active</button>
+          <button data-filter="completed" class="filter" type="button">Completed</button>
+        </div>
+        <button id="todoClearCompleted" class="secondary" type="button">Clear completed</button>
+      </div>
+      <ul id="todoList" class="task-list" aria-live="polite"></ul>
+      <p id="todoEmpty" class="empty-state">No tasks yet — add your first one!</p>
+    </section>
+
+    <section class="tool-card" id="expenseTool">
+      <div class="tool-header">
+        <h2>Expense Tracker</h2>
+        <p>Add income and expenses, then monitor your balance in real time.</p>
+      </div>
+      <form id="expenseForm" class="task-form">
+        <label for="expenseDescription">Description</label>
+        <input id="expenseDescription" type="text" placeholder="Food, rent, salary..." autocomplete="off" />
+        <div class="grid-2">
+          <label for="expenseAmount">Amount</label>
+          <label for="expenseType">Type</label>
+          <input id="expenseAmount" type="number" step="0.01" placeholder="0.00" />
+          <select id="expenseType">
+            <option value="expense">Expense</option>
+            <option value="income">Income</option>
+          </select>
+        </div>
+        <button type="submit">Add entry</button>
+      </form>
+      <div class="expense-summary">
+        <div class="stat">
+          <span id="expenseTotal">$0.00</span>
+          <small>Balance</small>
+        </div>
+        <div class="stat">
+          <span id="expenseIncome">$0.00</span>
+          <small>Income</small>
+        </div>
+        <div class="stat">
+          <span id="expenseSpent">$0.00</span>
+          <small>Expenses</small>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="filter-group" role="group" aria-label="Filter entries">
+          <button data-filter="all" class="filter active" type="button">All</button>
+          <button data-filter="income" class="filter" type="button">Income</button>
+          <button data-filter="expense" class="filter" type="button">Expense</button>
+        </div>
+        <button id="expenseClear" class="secondary" type="button">Clear entries</button>
+      </div>
+      <ul id="expenseList" class="task-list" aria-live="polite"></ul>
+      <p id="expenseEmpty" class="empty-state">Add an expense or income entry to get started.</p>
+    </section>
+
+    <section class="tool-card" id="pomodoroTool">
+      <div class="tool-header">
+        <h2>Pomodoro Timer</h2>
+        <p>Work in focused intervals, then take short or long breaks. Progress is saved locally.</p>
+      </div>
+      <div class="pomodoro-panel">
+        <div class="pomodoro-modes" role="group" aria-label="Pomodoro modes">
+          <button data-mode="work" class="mode-button active" type="button">Work</button>
+          <button data-mode="shortBreak" class="mode-button" type="button">Short Break</button>
+          <button data-mode="longBreak" class="mode-button" type="button">Long Break</button>
+        </div>
+        <div class="timer-display" aria-live="polite">
+          <span id="pomodoroTime">25:00</span>
+          <small id="pomodoroStatus">Ready to start</small>
+        </div>
+        <div class="pomodoro-controls">
+          <button id="pomodoroStart" type="button">Start</button>
+          <button id="pomodoroPause" type="button">Pause</button>
+          <button id="pomodoroReset" class="secondary" type="button">Reset</button>
+        </div>
+        <p class="small-text">Sessions completed: <strong id="pomodoroSessions">0</strong></p>
+      </div>
+    </section>
+
+    <section class="tool-card" id="habitTool">
+      <div class="tool-header">
+        <h2>Habit Tracker</h2>
+        <p>Build small daily habits and mark progress across the week.</p>
+      </div>
+      <form id="habitForm" class="task-form">
+        <label for="habitInput">New habit</label>
+        <div class="input-group">
+          <input id="habitInput" type="text" placeholder="Read, exercise, meditate..." autocomplete="off" />
+          <button type="submit">Add</button>
+        </div>
+      </form>
+      <ul id="habitList" class="habit-list" aria-live="polite"></ul>
+      <p id="habitEmpty" class="empty-state">No habits yet — add one and track daily progress.</p>
+    </section>
+
+    <section class="tool-card" id="calculatorTool">
+      <div class="tool-header">
+        <h2>Calculator</h2>
+        <p>A simple arithmetic calculator with keyboard-friendly controls.</p>
+      </div>
+      <div class="calculator-card">
+        <div id="calcDisplay" class="calc-display" role="status" aria-live="polite">0</div>
+        <div class="calc-grid" id="calcButtons">
+          <button type="button" data-value="7">7</button>
+          <button type="button" data-value="8">8</button>
+          <button type="button" data-value="9">9</button>
+          <button type="button" data-value="/">÷</button>
+          <button type="button" data-value="4">4</button>
+          <button type="button" data-value="5">5</button>
+          <button type="button" data-value="6">6</button>
+          <button type="button" data-value="*">×</button>
+          <button type="button" data-value="1">1</button>
+          <button type="button" data-value="2">2</button>
+          <button type="button" data-value="3">3</button>
+          <button type="button" data-value="-">−</button>
+          <button type="button" data-value="0">0</button>
+          <button type="button" data-value=".">.</button>
+          <button type="button" data-action="clear" class="secondary">C</button>
+          <button type="button" data-value="+">+</button>
+          <button type="button" data-action="delete" class="secondary">DEL</button>
+          <button type="button" data-action="equals" class="accent" style="grid-column: span 3;">=</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
